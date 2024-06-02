@@ -7,7 +7,7 @@ export const obtenerPostsPorIdModel = (id) => dbConection('SELECT * FROM posts W
 export const crearPostsModel = (titulo, img, descripcion) => 
     dbConection('INSERT INTO posts (id, titulo, img, descripcion, likes) VALUES (DEFAULT, $1, $2, $3, 0) RETURNING *;', [titulo, img, descripcion])
 
-export const editarLikePostsModel = (id) => dbConection("UPDATE posts SET likes = COALESCE(likes, 0) + 1 WHERE id = $1 RETURNING *;", [id])
+export const editarLikePostsModel = (id) => dbConection("UPDATE posts SET likes = likes + 1 WHERE id = $1 RETURNING *;", [id])
 
 export const borrarPostsModel = (id) => dbConection("DELETE FROM posts WHERE id = $1 RETURNING *", [id])
 
